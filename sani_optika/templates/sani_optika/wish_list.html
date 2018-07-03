@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% include "../sidebar.html" %}
+
+<div class="col-md-10">
+    <h2>Your wish list</h2>
+    {% if wish_list %}
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Category</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for wish in wish_list %}
+          <tr>
+            <td>
+                <img src="../../static/sani_optika/images/review/{{wish.product.image_path}}" alt="" height="200">
+            </td>
+            <td>{{wish.product.category.name}}</td>
+            <td>{{wish.product.name}}</td>
+            <td>{{wish.product.price}}</td>
+            <td>{{wish.product.rating}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% else %}
+        <p>Your wishlist is empty</p>
+      {% endif %}
+</div>
+
+{% endblock %}

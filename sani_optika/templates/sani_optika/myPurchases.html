@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-md-10">
+    {% if purchases %}
+
+    {% for pur in purchases %}
+    <h5>{{pur.datetime}}</h5>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in pur.items %}
+          <tr>
+            <td>
+                <img src="../../static/sani_optika/images/products/{{item.product.image_path}}" alt="" height="200">}
+            </td>
+            <td>{{item.product.name}}</td>
+            <td>{{item.product.price}}</td>
+            <td>{{item.quantity}}</td>
+            <td>
+                <a href="/sani_optika/review/{{item.product.id}}" class="btn btn-primary">Make review</a>
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>Total with coupons:</b></td>
+            <td>{{pur.total}}</td>
+          </tr>
+        </tbody>
+      </table>
+      {% endfor %}
+      {% else %}
+        <p>You have no purchases</p>
+      {% endif %}
+</div>
+
+{% endblock %}

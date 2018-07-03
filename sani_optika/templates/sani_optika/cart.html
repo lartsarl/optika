@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="col-md-10">
+    <h2>Your cart</h2>
+    {% if cart %}
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Category</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for prod in cart %}
+          <tr>
+            <td>
+                <img src="../../static/sani_optika/images/products/{{prod.image_path}}" alt="" height="200">
+            </td>
+            <td>{{prod.category.name}}</td>
+            <td>{{prod.name}}</td>
+            <td>{{prod.price}}</td>
+            <td>{{prod.rating}}</td>
+            <td style="text-align: center">
+              <div style="float: left">
+                <form method="post" action="/sani_optika/add_to_cart">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value={{prod.id}}>
+                    <input type="hidden" name="redirect_path" value={{request.path}}>
+                    <input type="hidden" name="quantity" value="-1"}>
+                    <input type="submit" class="btn btn-danger" value="-">
+                </form>
+              </div>
+              {% for item in request.session.cart %}
+                {% if item.product_id == prod.id %}
+                  <span >{{item.quantity}}</span>
+                {% endif %}
+              {% endfor %}
+              <div style="float: right">
+                <form method="post" action="/sani_optika/add_to_cart">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value={{prod.id}}>
+                    <input type="hidden" name="redirect_path" value={{request.path}}>
+                    <input type="hidden" name="quantity" value="1"}>
+                    <input type="submit" class="btn btn-success" value="+">
+                </form>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>Total:</b></td>
+            <td>{{total}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>Your coupons:</b></td>
+            <td>{{coupons}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>Total with coupons</b></td>
+            <td>{{ totalWithCoupons }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <form method="post" action="/sani_optika/make_order">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-primary btn-block" value="Make order">
+      </form>
+
+      {% else %}
+        <p>Your cart is empty</p>
+      {% endif %}
+</div>
+
+{% endblock %}

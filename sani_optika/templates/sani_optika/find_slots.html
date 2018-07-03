@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+    <h2>Choose location and date</h2>
+
+    <form id="appointment-form" method="post" action="/sani_optika/find_slots">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="date" name="date">
+        </div>
+        <div class="form-group">
+            <select name="location_id" form="appointment-form">
+                {% for loc in locations %}
+                <option value={{loc.id}}>{{loc.city}}, {{loc.address}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Find appointment</button>
+    </form>
+
+</div>
+{% endblock %}

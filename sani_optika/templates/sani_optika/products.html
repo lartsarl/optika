@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "../sidebar.html" %}
+
+<div class="col-md-10">
+    {% if products %}
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for prod in products %}
+          <tr>
+            <td>              
+              <img src="../../static/sani_optika/images/products/{{prod.image_path}}" alt="" height="200">
+            </td>
+            <td>{{prod.name}}</td>
+            <td>{{prod.price}}</td>
+            <td>
+              {{prod.rating}} 
+
+              {% if request.session.username %}
+              <form method="post" action="/sani_optika/rating">
+                  {% csrf_token %}
+                  <input type="hidden" name="product_id" value={{prod.id}}>
+                  <label class="radio-inline">
+                    <input type="radio" name="rating" value="1">1
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="rating" value="2">2
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="rating" value="3">3
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="rating" value="4">4
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="rating" value="5">5
+                  </label>
+                  <input type="submit" class="btn btn-primary" value="Rate">
+                </form>
+                {% endif %}
+            </td>
+            <td>
+                <form method="post" action="/sani_optika/add_to_cart">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value={{prod.id}}>
+                    <input type="hidden" name="quantity" value="1"}>
+                    <input type="hidden" name="redirect_path" value={{request.path}}>
+                    <input type="submit" class="btn btn-success" value="Add to cart">
+                </form>
+            </td>
+            <td>
+                <form method="post" action="/sani_optika/wish_list">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value={{prod.id}}>
+                    <input type="submit" class="btn btn-danger" value="Add to wishlist">
+                </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% else %}
+        <p>No products are available.</p>
+      {% endif %}
+</div>
+
+{% endblock %}

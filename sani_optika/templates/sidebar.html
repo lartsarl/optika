@@ -1,0 +1,16 @@
+
+
+<div class="col-md-2">
+    {% if categories %}
+    <h5>Categories</h5>
+    <!-- <ul> -->
+    {% for cat in categories %}
+        <!-- <li><a href="products/{{cat.id}}">{{ cat.name }}</a></li> -->
+        <div><a class="btn btn-default" href="/sani_optika/products/{{cat.id}}" role="button">{{ cat.name }}</a></div>
+    {% endfor %}
+    <!-- </ul> -->
+    {% else %}
+        <p>No categories are available.</p>
+    {% endif %}
+
+</div>
