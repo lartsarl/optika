@@ -125,6 +125,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/sani_optika/static/'
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
