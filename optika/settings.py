@@ -25,7 +25,7 @@ SECRET_KEY = '14kl@ut=x0i0o!_x0ek1y4*&9g!===@0&6w3++f7f+n8l$@i1-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sani-optika.herokuapp.com']
 
 
 # Application definition
