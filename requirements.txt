@@ -1,3 +1,7 @@
 Django==2.0.6
 gunicorn
+<<<<<<< HEAD
 whitenoise
+=======
+whitenoise
+>>>>>>> b75d0dbf9b26d4af228ddde45e33643e988d6f92
