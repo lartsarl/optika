@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+web: gunicorn optika.wsgi —-log-file -
+=======
+web: gunicorn optika.wsgi —-log-file -
+>>>>>>> b75d0dbf9b26d4af228ddde45e33643e988d6f92
