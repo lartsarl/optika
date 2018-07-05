@@ -71,14 +71,19 @@ def login(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
 
-            user = User.objects.get(username=username)
+            try:
+                user = User.objects.get(username=username)
 
+            except User.DoesNotExist:
+                user = None
+            
             if user:
                 if user.password == password:
                     request.session['username'] = username
                     request.session['cart'] = []
             else:
                 print("Invalid username and/or password")
+                return HttpResponseRedirect('/sani_optika/login')
 
             # redirect to a new URL:
             return HttpResponseRedirect('/sani_optika')
