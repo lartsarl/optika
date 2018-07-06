@@ -19,5 +19,4 @@ urlpatterns = [
     path('find_slots', views.find_slots, name='find_slots'),
     path('wish_list', views.wish_list, name='wish_list'),
     path('rating', views.rating, name='rating')
-
 ]
