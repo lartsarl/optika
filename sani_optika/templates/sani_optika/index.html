@@ -1,17 +1,11 @@
-{% extends "base.html" %} {% block content %} {% include "../sidebar.html" %} {% if reviews %} {% for rev in reviews %}
-<div class="card" style="max-width: 500px">
-  <div class="card-header">
-    <img src="../../static/sani_optika/images/review/{{rev.path}}" alt="" height="200">
-  </div>
-  <div class="card-body">
-    <b>{{rev.user.first_name}} {{rev.user.last_name}}</b> bought
-    <b>{{rev.product.name}}</b>
-  </div>
-  <div class="card-footer">
-    {{rev.text}}
-  </div>
+{% block content %} {% include "../base.html" %} {% load static %}
+<header>
+    <img src="{% static "sani_optika/images/others/background.jpg" %}" style="max-width:60%; max-height: 100%; margin: 130px 100px"/>
+</header>
+<div class="container left">
+	<div class="row">
+		<a class="btn pull-right" style="margin-right: -100px" href="online_shop">SHOP NOW</a>
+		<a class="btn pull-right" href="#">FIND US</a>
+	</div>
 </div>
-{% endfor %} {% else %} {% endif %}
-</div>
-
 {% endblock %}

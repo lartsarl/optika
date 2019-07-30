@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+.btn {
+  display: inline-block;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  color: #000000;
+  border-radius: 0;
+  padding: 18px 80px 20px;
+  transition: all 0.7s ease-out;
+  background-image: #ffffff;
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin: 0.625rem;
+  border: none;
+  border: 1px solid #000000
+}
+
+.btn:hover {
+  color: #c90000;
+  border: 1px solid #c90000;
+  background-position: right center;
+}

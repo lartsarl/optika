@@ -2,64 +2,80 @@
 <html lang="en">
 
 <head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
-    <link href="{% static "sani_optika/css/5star.css" %}" rel="stylesheet">
-    <title>Eyewear store</title>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="{% static 'css/products.css' %}">
+	<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+	<link rel="stylesheet" href="{% static 'css/about_us.css' %}">
+	<link rel="stylesheet" href="{% static 'css/button_front.css' %}">
+	<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+	<script type="text/javascript" src="{% static 'js/optika.js' %}"></script>
+	<title>Sani optika - Eyewear store</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="/sani_optika" class="navbar-brand">
-            <img src="{% static "sani_optika/images/logo.png" %}" width="250" height="40" class="d-inline-block align-top" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            </ul>
-
-            <ul class="navbar-nav">
-              {% if request.session.username == null %}
-              <li class="nav-item">
-                  <a class="nav-link" href="/sani_optika/signup">Sign up</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/sani_optika/login">Login</a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="/sani_optika/find_slots">Make appointment</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/sani_optika/my_purchases">My purchases</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/sani_optika/wish_list">Wishlist</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/sani_optika/cart">Cart</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/sani_optika/logout">Logout</a>
-              </li>
-              {% endif %}
-
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container-fluid">
-        <div class="row">
-            {% block content %} {% endblock %}
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<nav class="navbar navbar-default navbar-doublerow navbar-trans navbar-fixed-top">
+		<nav class="navbar navbar-top hidden-xs">
+			<div class="container">
+				<ul class="nav navbar-nav pull-left">
+					<li><a href="https://www.facebook.com/sanioptik/"><span
+								class="glyphicon glyphicon-thumbs-up text-grey"></span></a></li>
+					<li><a href="http://www.sanioptik.rs/"><span class="glyphicon glyphicon-globe text-grey"></span></a>
+					</li>
+					<li><a href="#"><span class="glyphicon glyphicon-pushpin text-white"></span></a></li>
+					<li><a href="#"><span class="text-grey">QUESTIONS? CALL: <b>011/2455-261</b></span></a></li>
+				</ul>
+				<ul class="nav navbar-nav pull-right">
+					<li><a href="/sani_optika/online_shop" class="text-grey">Online store</a></li>
+				</ul>
+			</div>
+			<div class="dividline light-grey"></div>
+		</nav>
+		<nav class="navbar navbar-down">
+			<div class="container">
+				<div class="flex-container">
+					<div class="navbar-header flex-item">
+						<a href="/sani_optika/"><img src="{% static "sani_optika/images/logo.png" %}" width="350px"
+								height="60px" class="d-inline-block align-top" alt=""></a>
+					</div>
+					<ul class="nav navbar-nav flex-item hidden-xs pull-left">
+						<!-- {% for cat in categories %}
+				<li class="nav-item"><a class="nav-link" style="border:none; background: none"
+						href="/sani_optika/products/{{cat.id}}" role="button">{{cat.name}}</a></li>
+				{% endfor %} -->
+						<li class="nav-item"><a class="nav-link"
+								style="border:none; background: none; color: rgb(102, 95, 95)"
+								href="/sani_optika/hearing_aids" role="button">Hearing aids</a></li>
+						<li class="nav-item"><a class="nav-link"
+								style="border:none; background: none; color: rgb(102, 95, 95)"
+								href="/sani_optika/online" role="button">Stores</a></li>
+						<li class="nav-item"><a class="nav-link"
+								style="border:none; background: none;  color: rgb(102, 95, 95)"
+								href="/sani_optika/about_us" role="button">About Us</a></li>
+						<li class="nav-item"><a class="nav-link"
+								style="border:none; background: none;  color: rgb(102, 95, 95)"
+								href="/sani_optika/hearing_aids" role="button">Contact Us</a></li>
+					</ul>
+					<div class="dropdown visible-xs pull-right">
+						<button class="btn btn-default dropdown-toggle " type="button" id="dropdownmenu"
+							data-toggle="dropdown">
+							<span class="glyphicon glyphicon-align-justify"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Online store</a></li>
+							<li><a href="#">Stores</a></li>
+							<li><a href="#">Hearing aids</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="/sani_optika/about_us">About us</a></li>
+							<li><a href="#">Contact us</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</nav>
 </body>
 
 </html>

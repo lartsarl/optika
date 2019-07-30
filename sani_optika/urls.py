@@ -18,5 +18,7 @@ urlpatterns = [
     path('make_appointment', views.make_appointment, name='make_appointment'),
     path('find_slots', views.find_slots, name='find_slots'),
     path('wish_list', views.wish_list, name='wish_list'),
-    path('rating', views.rating, name='rating')
+    path('rating', views.rating, name='rating'),
+    path('about_us', views.about_us, name='about_us'),
+    path('online_shop', views.online_shop, name='online_shop'),
 ]

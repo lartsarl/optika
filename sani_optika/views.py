@@ -22,6 +22,20 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+def online_shop(request):
+    categories = Category.objects.order_by('-name')
+    reviews = Review.objects.order_by('-id')
+    template = loader.get_template('base_online.html')
+    context = {
+        'categories': categories,
+        'reviews': reviews
+    }
+    return HttpResponse(template.render(context, request))
+
+def about_us(request):
+    template = loader.get_template('sani_optika/about_us.html')
+    return HttpResponse( template.render({}, request))
+
 def signup(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -86,7 +100,7 @@ def login(request):
                 return HttpResponseRedirect('/sani_optika/login')
 
             # redirect to a new URL:
-            return HttpResponseRedirect('/sani_optika')
+            return HttpResponseRedirect('online_shop')
         else:
             print("###### INVALID #####")
 
