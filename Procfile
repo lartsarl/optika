@@ -1,1 +1,1 @@
-web: gunicorn optika.wsgi —-log-file -
+web: gunicorn optika.wsgi --log-file -
